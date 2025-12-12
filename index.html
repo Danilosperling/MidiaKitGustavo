@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mídia Kit - Gustavo Rafael (@grmickey_official)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* --- Configurações Globais e Paleta de Cores --- */
+        :root {
+            --color-black-matte: #1a1a1a;
+            --color-graphite: #2d2d2d;
+            --color-ice-white: #f5f5f5;
+            --color-gold: #c0a062; /* Dourado Suave */
+            --color-text-body: #ccc; /* Texto mais suave para fundos escuros */
+
+            --font-title: 'Poppins', sans-serif;
+            --font-body: 'Lora', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-black-matte);
+            color: var(--color-ice-white);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Utilitários de Layout --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 30px;
+        }
+
+        .section-light {
+            background-color: var(--color-ice-white);
+            color: var(--color-graphite);
+        }
+
+        .section-light h2,
+        .section-light h3 {
+            color: var(--color-black-matte);
+        }
+
+        /* --- Tipografia --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: var(--color-ice-white);
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-light h2 {
+             color: var(--color-black-matte);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--color-gold);
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            max-width: 650px;
+        }
+
+        a {
+            color: var(--color-gold);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        /* --- 1. Seção: Capa (Header) --- */
+        .cover {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--color-ice-white);
+            position: relative;
+            /* NOTA: Para a imagem de capa, se você tiver uma imagem chamada 'capa.jpg' na pasta img, 
+               mude a linha abaixo para: url('img/capa.jpg') 
+            */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('img/capa.png') no-repeat center center/cover;
+            padding: 20px;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .cover .subtitle {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .cover .details {
+            margin-top: 20px;
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            text-transform: uppercase;
+        }
+        
+        .verified-badge {
+            display: inline-block;
+            background-color: var(--color-gold);
+            color: var(--color-black-matte);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* --- 2. Seção: Sobre Mim --- */
+        #sobre p {
+            font-size: 1.1rem;
+            color: var(--color-graphite);
+        }
+
+        /* --- 3. Seção: Números e Presença --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--color-graphite);
+            padding: 30px 25px;
+            border-radius: 8px;
+            text-align: center;
+            border-bottom: 4px solid var(--color-gold);
+        }
+
+        .stat-card .stat-number {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            line-height: 1.1;
+        }
+
+        .stat-card .stat-label {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--color-ice-white);
+            margin-top: 5px;
+        }
+        
+        #numeros .description {
+            margin-top: 40px;
+            font-size: 1.1rem;
+            color: var(--color-text-body);
+            max-width: 100%;
+            text-align: center;
+        }
+
+        /* --- 4. Seção: Audiência e GRÁFICOS --- */
+        .audience-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .audience-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .audience-charts {
+            flex: 1.2;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .chart-container {
+            background-color: var(--color-graphite);
+            border-radius: 8px;
+            padding: 15px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .chart-container.full-width {
+            grid-column: 1 / -1;
+            height: 300px;
+        }
+        
+        .chart-container canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .audience-text ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+        
+        .audience-text li {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .audience-text li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* --- 5. Seção: Parcerias (ATUALIZADO) --- */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            align-items: center;
+            justify-items: center; /* Centraliza as logos */
+            margin-top: 30px;
+        }
+
+        /* Estilo específico para as Logos das marcas */
+        .partner-logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 80px; /* Altura máxima para ficarem uniformes */
+            object-fit: contain;
+            filter: grayscale(1) opacity(0.7); /* Efeito cinza inicial */
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0) opacity(1); /* Colorido ao passar o mouse */
+            transform: scale(1.05);
+        }
+
+        /* --- 6. Seção: Conteúdo e Estilo --- */
+        .content-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 250px;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            background-color: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-family: var(--font-title);
+            /* Sombra interna leve para destacar texto se houver */
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
+        .gallery-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 3; }
+        .gallery-item:nth-child(3) { grid-column: 1 / 2; grid-row: 2 / 3; }
+        .gallery-item:nth-child(4) { grid-column: 2 / 3; grid-row: 2 / 3; }
+
+
+        /* --- 7. Seção: Serviços Oferecidos --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background-color: var(--color-graphite);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-gold);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--color-text-body);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* --- 8. Seção: Processo de Trabalho --- */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 5%;
+            width: 90%;
+            height: 2px;
+            background-color: var(--color-graphite);
+            z-index: 0;
+        }
+
+        .timeline-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 0 15px;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-gold);
+            color: var(--color-black-matte);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: 4px solid var(--color-ice-white);
+            z-index: 1;
+            position: relative;
+        }
+
+        .timeline-step h3 {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--color-black-matte);
+        }
+
+        .timeline-step p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0;
+        }
+
+        /* --- 9. Seção: Depoimentos --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        blockquote {
+            background-color: var(--color-graphite);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-gold);
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--color-text-body);
+            margin: 0;
+        }
+        
+        blockquote cite {
+            display: block;
+            margin-top: 15px;
+            font-style: normal;
+            font-weight: 600;
+            font-family: var(--font-title);
+            color: var(--color-ice-white);
+        }
+
+        /* --- 10. Seção: Contato (Footer) --- */
+        #contato {
+            text-align: center;
+            background-color: var(--color-graphite);
+        }
+        
+        #contato h2 {
+            border: none;
+            text-align: center;
+            display: block;
+            color: var(--color-ice-white);
+        }
+
+        .contact-links {
+            list-style: none;
+            padding: 0;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-links li {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: baseline;
+        }
+        
+        .contact-links li strong {
+            min-width: 110px; 
+            color: var(--color-text-body);
+            margin-right: 10px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .qr-code-placeholder {
+            width: 180px;
+            height: 180px;
+            background: var(--color-ice-white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-black-matte);
+            font-family: var(--font-title);
+            font-weight: 600;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        footer .copyright {
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+
+        /* --- Responsividade (Mobile) --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .container { padding: 60px 20px; }
+            .cover h1 { font-size: 2.8rem; }
+            .cover .subtitle { font-size: 1rem; }
+            .audience-layout { flex-direction: column; }
+            .audience-charts { grid-template-columns: 1fr; width: 100%; }
+            .chart-container, .chart-container.full-width { height: 250px; }
+            
+            /* Content Gallery Mobile */
+            .content-gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
+            .gallery-item:nth-child(2) { grid-column: 1 / 2; grid-row: 2 / 3; }
+            .gallery-item:nth-child(3) { grid-column: 2 / 3; grid-row: 2 / 3; }
+            .gallery-item:nth-child(4) { grid-column: 1 / 3; grid-row: 3 / 4; }
+
+            .timeline { flex-direction: column; gap: 30px; }
+            .timeline::before { display: none; }
+            .timeline-step { padding: 0; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .contact-info { flex-direction: column; gap: 40px; }
+            .contact-links { text-align: center; }
+            .contact-links li { flex-direction: column; align-items: center; }
+            .contact-links li strong { margin-right: 0; margin-bottom: 5px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="cover">
+        <div class="cover-content">
+            <h1>Gustavo Rafael</h1>
+            <p class="subtitle">@grmickey_official</p>
+            <div class="details">
+                <span>Criador de Conteúdo</span>
+                <span>🇧🇷</span>
+                <span class="verified-badge">✓</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="sobre" class="container section-light">
+            <h2>Sobre mim</h2>
+            <p>Sou Gustavo Rafael, criador de conteúdo digital, atleta de esgrima e embaixador da marca de óculos UZME. Tenho 26 anos, moro em Florianópolis (SC) e compartilho com o público um estilo de vida autêntico que mistura moda, esporte, música e atitude.</p>
+            <p>Minha presença nas redes nasceu da vontade de inspirar pessoas a viverem com liberdade, confiança e estética seja no look, no treino, ou na forma de se expressar.</p>
+            <p>Hoje, atuo como influenciador multi-nicho, com foco em lifestyle, beleza masculina, saúde, moda e comportamento.</p>
+        </section>
+
+        <section id="numeros" class="container">
+            <h2>Presença Digital</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">24K</div>
+                    <div class="stat-label">Seguidores (Instagram)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">+43K</div>
+                    <div class="stat-label">Seguidores (TikTok)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">888%</div>
+                    <div class="stat-label">Engajamento Médio</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500k</div>
+                    <div class="stat-label">Alcance Mensal</div>
+                </div>
+            </div>
+
+            <p class="description">Minhas redes combinam conteúdo visual de alto impacto com autenticidade no discurso. A estética é pensada, mas nunca artificial.</p>
+        </section>
+
+        <section id="audiencia" class="container section-light">
+            <h2>Audiência</h2>
+            <div class="audience-layout">
+                <div class="audience-text">
+                    <p>Meu público é formado por pessoas que buscam inspiração real, com interesse em estilo, autocuidado, música, performance e vida urbana.</p>
+                    <ul>
+                        <li><strong>Idade predominante:</strong> 18 a 35 anos</li>
+                        <li><strong>Gênero:</strong> Masculino e feminino na mesma proporção</li>
+                        <li><strong>Principais cidades:</strong> Florianópolis, São Paulo, São José, Rio de Janeiro e Porto Alegre</li>
+                        <li>Engajamento orgânico e constante</li>
+                    </ul>
+                </div>
+                <div class="audience-charts">
+                    <div class="chart-container">
+                        <canvas id="ageChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                    <div class="chart-container full-width">
+                        <canvas id="locationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="parcerias" class="container">
+            <h2>Marcas e Parcerias</h2>
+            <p>Ao longo da trajetória, colaborei com marcas e eventos ligados à moda, lifestyle e entretenimento. O objetivo em cada parceria é gerar conexão genuína e entregar resultados reais, sem perder a identidade.</p>
+            
+            <div class="partners-grid">
+                <img src="img/UZME.JPEG" alt="Parceiro UZME" class="partner-logo">
+                <img src="img/OLHO.png" alt="Parceiro OLHO" class="partner-logo">
+                <img src="img/KINGS.png" alt="Parceiro KINGS" class="partner-logo">
+                <img src="img/INSIGHT.png" alt="Parceiro INSIGHT" class="partner-logo">
+            </div>
+            
+            <p style="margin-top: 30px; color: var(--color-text-body);"><strong>Entre as ações já realizadas:</strong> Produção de conteúdos para campanhas locais e nacionais, participação em eventos e festivais, criação de vídeos e fotos com abordagem espontânea e estética moderna.</p>
+        </section>
+
+        <section id="conteudo" class="container section-light">
+            <h2>Estilo de Conteúdo</h2>
+            <p>Meu conteúdo é direto, visualmente forte e bem editado, com foco em autenticidade e storytelling visual. Trago a combinação entre vida real e estética cinematográfica, com uma linguagem acessível e presença marcante diante da câmera.</p>
+            <p>Produzo para Instagram e TikTok, alternando entre lifestyle, moda, humor leve, tendências e bastidores do meu cotidiano.</p>
+            
+            <div class="content-gallery">
+                <div class="gallery-item" style="background-image: url('img/foto-lifestyle.JPEG')"></div>
+                <div class="gallery-item" style="background-image: url('img/foto-moda.JPEG')"></div>
+                <div class="gallery-item" style="background-image: url('img/foto-esgrima.JPEG')"></div>
+                <div class="gallery-item" style="background-image: url('img/foto-viagem.JPEG')"></div>
+            </div>
+        </section>
+
+        <section id="servicos" class="container">
+            <h2>Serviços Oferecidos</h2>
+            <p style="color: var(--color-text-body);">Cada entrega é pensada junto à marca, respeitando briefing, identidade visual e público-alvo.</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Publipost</h3>
+                    <p>Feed, Reels e Sequências de Stories.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Vídeos Curtos</h3>
+                    <p>Produção de conteúdo para campanhas no TikTok e Reels.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Unboxing e Reviews</h3>
+                    <p>Apresentação autêntica de produtos e serviços.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Presença em Eventos</h3>
+                    <p>Cobertura de eventos, festivais e lançamentos.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Campanhas Integradas</h3>
+                    <p>Criação de storytelling completo em múltiplas plataformas.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Embaixador de Marca</h3>
+                    <p>Parcerias de longo prazo para construção de identidade.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="processo" class="container section-light">
+            <h2>Forma de Trabalho</h2>
+            <p style="text-align: center; max-width: 100%;">Meu processo é simples e eficiente. Transparência, agilidade e comprometimento com qualidade são os pilares do meu trabalho.</p>
+            
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="step-number">1</div>
+                    <h3>Briefing e Alinhamento</h3>
+                    <p>Entendo a proposta e o público da marca.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">2</div>
+                    <h3>Criação de Conceito</h3>
+                    <p>Transformo o briefing em uma ideia autêntica e visual.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">3</div>
+                    <h3>Produção de Conteúdo</h3>
+                    <p>Execução criativa, com foco em estética e resultado.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">4</div>
+                    <h3>Entrega e Análise</h3>
+                    <p>Envio o material e acompanho o desempenho.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="depoimentos" class="container">
+            <h2>Depoimentos</h2>
+            <div class="testimonials-grid">
+                <blockquote>
+                    “Você destacou bem a experiência sensorial que já divulgamos em nosso Instagram, e isso é demais! Agradecemos por se atentar aos detalhes, isso faz toda a diferença.”
+                    <cite>— UZME</cite>
+                </blockquote>
+                <blockquote>
+                    “Obrigada pelo lindo trabalho!”
+                    <cite>— Love´s café</cite>
+                </blockquote>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contato" class="container">
+        <h2>Contato</h2>
+        <div class="contact-info">
+            <ul class="contact-links">
+                <li><strong>E-mail:</strong> <a href="mailto:grmickeyof@gmail.com">grmickeyof@gmail.com</a></li>
+                <li><strong>WhatsApp:</strong> <a href="https://wa.me/5591981350062" target="_blank">(91) 98135-0062</a></li>
+                <li><strong>Links:</strong> <a href="https://linktr.ee/grmickey" target="_blank">linktr.ee/grmickey</a></li>
+                <li><strong>Local:</strong> <span>Florianópolis – SC</span></li>
+            </ul>
+            <div class="qr-code-placeholder">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linktr.ee/grmickey" alt="QR Code Linktree" style="width: 150px; height: 150px;">
+            </div>
+        </div>
+        <p class="copyright">© 2025 Gustavo Rafael. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Configurações de cores baseadas na paleta CSS
+        const colorGold = '#c0a062';
+        const colorGraphite = '#2d2d2d';
+        const colorIceWhite = '#f5f5f5';
+        const colorTextBody = '#ccc';
+        const fontFamily = "'Poppins', sans-serif";
+
+        // Configuração Global dos Gráficos (Fontes e Cores)
+        Chart.defaults.color = colorIceWhite;
+        Chart.defaults.font.family = fontFamily;
+        Chart.defaults.borderColor = '#444'; // Cor das linhas de grade sutis
+
+        // --- 1. Gráfico de Faixa Etária (Barras Verticais) ---
+        const ageCtx = document.getElementById('ageChart').getContext('2d');
+        new Chart(ageCtx, {
+            type: 'bar',
+            data: {
+                labels: ['<18', '18-24', '25-34', '35-44', '45+'],
+                datasets: [{
+                    label: '% da Audiência',
+                    data: [10, 45, 35, 7, 3], 
+                    backgroundColor: colorGold,
+                    borderRadius: 4,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Faixa Etária Predominante',
+                        font: { size: 16, weight: '600' },
+                        padding: { bottom: 20 }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#3d3d3d' },
+                        ticks: { color: colorTextBody }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: colorIceWhite }
+                    }
+                }
+            }
+        });
+
+        // --- 2. Gráfico de Gênero (Doughnut/Rosca) ---
+        const genderCtx = document.getElementById('genderChart').getContext('2d');
+        new Chart(genderCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Masculino', 'Feminino'],
+                datasets: [{
+                    data: [50, 50], 
+                    backgroundColor: [colorGold, '#7a7a7a'], 
+                    borderColor: colorGraphite,
+                    borderWidth: 3,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: colorIceWhite, padding: 20 }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribuição por Gênero',
+                        font: { size: 16, weight: '600' }
+                    }
+                },
+                cutout: '60%' 
+            }
+        });
+
+        // --- 3. Gráfico de Localização (Barras Horizontais) ---
+        const locationCtx = document.getElementById('locationChart').getContext('2d');
+        new Chart(locationCtx, {
+            type: 'bar',
+            indexAxis: 'y', 
+            data: {
+                labels: ['Florianópolis', 'São Paulo', 'Rio de Janeiro', 'São José', 'Porto Alegre'],
+                datasets: [{
+                    label: 'Top Cidades',
+                    data: [35, 28, 20, 12, 5], 
+                    backgroundColor: colorGold,
+                    borderRadius: 4,
+                    barPercentage: 0.6, 
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Top Localizações',
+                        font: { size: 16, weight: '600' }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false, 
+                        grid: { display: false }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { 
+                            color: colorIceWhite,
+                            font: { size: 13 }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
