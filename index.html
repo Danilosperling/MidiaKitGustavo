@@ -17,8 +17,9 @@
             --color-black-matte: #1a1a1a;
             --color-graphite: #2d2d2d;
             --color-ice-white: #f5f5f5;
-            --color-gold: #c0a062;
-            --color-text-body: #ccc;
+            --color-gold: #c0a062; /* Dourado Suave */
+            --color-text-body: #ccc; /* Texto mais suave para fundos escuros */
+
             --font-title: 'Poppins', sans-serif;
             --font-body: 'Lora', serif;
         }
@@ -57,7 +58,7 @@
             height: 100vh; width: 100%; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
             color: var(--color-ice-white); position: relative; padding: 20px;
-            /* CORREÇÃO AQUI: Capa.png (C maiúsculo, sem pasta img/) */
+            /* CORREÇÃO AQUI: 'Capa.png' (C maiúsculo, sem 'img/') */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('Capa.png') no-repeat center center/cover;
         }
@@ -214,4 +215,102 @@
             <h2>Marcas e Parcerias</h2>
             <p>Ao longo da trajetória, colaborei com marcas e eventos ligados à moda, lifestyle e entretenimento.</p>
             
-            <div class="partners-
+            <div class="partners-grid">
+                <img src="UZME.jpeg" alt="Parceiro UZME" class="partner-logo">
+                <img src="OLHO.png" alt="Parceiro OLHO" class="partner-logo">
+                <img src="KINGS.png" alt="Parceiro KINGS" class="partner-logo">
+                <img src="INSIGHT.png" alt="Parceiro INSIGHT" class="partner-logo">
+            </div>
+            
+            <p style="margin-top: 30px; color: var(--color-text-body);"><strong>Entre as ações já realizadas:</strong> Produção de conteúdos para campanhas locais e nacionais, participação em eventos e festivais.</p>
+        </section>
+
+        <section id="conteudo" class="container section-light">
+            <h2>Estilo de Conteúdo</h2>
+            <p>Meu conteúdo é direto, visualmente forte e bem editado, com foco em autenticidade e storytelling visual.</p>
+            
+            <div class="content-gallery">
+                <div class="gallery-item" style="background-image: url('foto-lifestyle.jpeg')"></div>
+                <div class="gallery-item" style="background-image: url('foto-moda.jpeg')"></div>
+                <div class="gallery-item" style="background-image: url('foto-esgrima.jpeg')"></div>
+                <div class="gallery-item" style="background-image: url('foto-viagem.jpeg')"></div>
+            </div>
+        </section>
+
+        <section id="servicos" class="container">
+            <h2>Serviços Oferecidos</h2>
+            <p style="color: var(--color-text-body);">Cada entrega é pensada junto à marca, respeitando briefing e identidade visual.</p>
+            <div class="services-grid">
+                <div class="service-card"><h3>Publipost</h3><p>Feed, Reels e Sequências de Stories.</p></div>
+                <div class="service-card"><h3>Vídeos Curtos</h3><p>Produção de conteúdo para TikTok e Reels.</p></div>
+                <div class="service-card"><h3>Unboxing e Reviews</h3><p>Apresentação autêntica de produtos.</p></div>
+                <div class="service-card"><h3>Presença em Eventos</h3><p>Cobertura de eventos e lançamentos.</p></div>
+                <div class="service-card"><h3>Campanhas Integradas</h3><p>Storytelling completo em múltiplas plataformas.</p></div>
+                <div class="service-card"><h3>Embaixador de Marca</h3><p>Parcerias de longo prazo.</p></div>
+            </div>
+        </section>
+
+        <section id="processo" class="container section-light">
+            <h2>Forma de Trabalho</h2>
+            <p style="text-align: center; max-width: 100%;">Transparência, agilidade e comprometimento com qualidade.</p>
+            <div class="timeline">
+                <div class="timeline-step"><div class="step-number">1</div><h3>Briefing</h3><p>Entendo a proposta da marca.</p></div>
+                <div class="timeline-step"><div class="step-number">2</div><h3>Conceito</h3><p>Ideia autêntica e visual.</p></div>
+                <div class="timeline-step"><div class="step-number">3</div><h3>Produção</h3><p>Execução criativa.</p></div>
+                <div class="timeline-step"><div class="step-number">4</div><h3>Entrega</h3><p>Envio e análise.</p></div>
+            </div>
+        </section>
+
+        <section id="depoimentos" class="container">
+            <h2>Depoimentos</h2>
+            <div class="testimonials-grid">
+                <blockquote>“Você destacou bem a experiência sensorial... Agradecemos por se atentar aos detalhes!”<cite>— UZME</cite></blockquote>
+                <blockquote>“Obrigada pelo lindo trabalho!”<cite>— Love´s café</cite></blockquote>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contato" class="container">
+        <h2>Contato</h2>
+        <div class="contact-info">
+            <ul class="contact-links">
+                <li><strong>E-mail:</strong> <a href="mailto:grmickeyof@gmail.com">grmickeyof@gmail.com</a></li>
+                <li><strong>WhatsApp:</strong> <a href="https://wa.me/5591981350062" target="_blank">(91) 98135-0062</a></li>
+                <li><strong>Links:</strong> <a href="https://linktr.ee/grmickey" target="_blank">linktr.ee/grmickey</a></li>
+                <li><strong>Local:</strong> <span>Florianópolis – SC</span></li>
+            </ul>
+            <div class="qr-code-placeholder">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linktr.ee/grmickey" alt="QR Code Linktree" style="width: 150px; height: 150px;">
+            </div>
+        </div>
+        <p class="copyright">© 2025 Gustavo Rafael. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const colorGold = '#c0a062'; const colorGraphite = '#2d2d2d'; const colorIceWhite = '#f5f5f5'; const colorTextBody = '#ccc'; const fontFamily = "'Poppins', sans-serif";
+        Chart.defaults.color = colorIceWhite; Chart.defaults.font.family = fontFamily; Chart.defaults.borderColor = '#444';
+
+        const ageCtx = document.getElementById('ageChart').getContext('2d');
+        new Chart(ageCtx, {
+            type: 'bar',
+            data: { labels: ['<18', '18-24', '25-34', '35-44', '45+'], datasets: [{ label: '% da Audiência', data: [10, 45, 35, 7, 3], backgroundColor: colorGold, borderRadius: 4, borderSkipped: false }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: 'Faixa Etária Predominante', font: { size: 16, weight: '600' }, padding: { bottom: 20 } } }, scales: { y: { beginAtZero: true, grid: { color: '#3d3d3d' }, ticks: { color: colorTextBody } }, x: { grid: { display: false }, ticks: { color: colorIceWhite } } } }
+        });
+
+        const genderCtx = document.getElementById('genderChart').getContext('2d');
+        new Chart(genderCtx, {
+            type: 'doughnut',
+            data: { labels: ['Masculino', 'Feminino'], datasets: [{ data: [50, 50], backgroundColor: [colorGold, '#7a7a7a'], borderColor: colorGraphite, borderWidth: 3, hoverOffset: 4 }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: colorIceWhite, padding: 20 } }, title: { display: true, text: 'Distribuição por Gênero', font: { size: 16, weight: '600' } } }, cutout: '60%' }
+        });
+
+        const locationCtx = document.getElementById('locationChart').getContext('2d');
+        new Chart(locationCtx, {
+            type: 'bar', indexAxis: 'y',
+            data: { labels: ['Florianópolis', 'São Paulo', 'Rio de Janeiro', 'São José', 'Porto Alegre'], datasets: [{ label: 'Top Cidades', data: [35, 28, 20, 12, 5], backgroundColor: colorGold, borderRadius: 4, barPercentage: 0.6 }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: 'Top Localizações', font: { size: 16, weight: '600' } } }, scales: { x: { display: false, grid: { display: false } }, y: { grid: { display: false }, ticks: { color: colorIceWhite, font: { size: 13 } } } } }
+        });
+    </script>
+</body>
+</html>
